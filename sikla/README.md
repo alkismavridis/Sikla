@@ -18,15 +18,15 @@ Normally this will compile all files. For this you need to have java version 7. 
 
 If you want to play with a double click, just open a text editow and write:
 
-#!/bin/bash
-cd YOUR_PATH
-java sikla.SiklaMain
+      #!/bin/bash
+      cd YOUR_PATH
+      java sikla.SiklaMain
 
 for example I write
 
-#!/bin/bash
-cd ~/Programs/java/classes
-java sikla.SiklaMain
+      #!/bin/bash
+      cd ~/Programs/java/classes
+      java sikla.SiklaMain
 
 Save it. Right-click it and go to properties. Choose "Allow to execute as a program" in the Rights tab.
 Have Fun!
