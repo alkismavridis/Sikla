@@ -18,7 +18,8 @@ If you like terminal more, just cd to the Linux_Install folder and type
 make
 
 
- 3. A file named Sikla will appear to your home folder. Double-click it to play!
+3. A file named Sikla will appear to your home folder. Double-click it to play!
 You can move this file wherever you like.
+4. After if you want, you can erase the zip file and the folder extracted from it.
 
 That's all, have fun :-)
