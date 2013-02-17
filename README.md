@@ -24,9 +24,12 @@ You can move this file wherever you like.
 
 
 TO UNINSTALL ON LINUX
+
 1. Go to /usr/games/Sikla from nautilus or terminal.
-2. Excecute the uninstall file with a double-clisk or by typing
+2. Excecute the uninstall file with a double-click or by typing
+
 ./uninstall
+
 in terminal.
 
 
