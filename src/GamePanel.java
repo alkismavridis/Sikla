@@ -42,12 +42,15 @@ public void paintComponent(Graphics g) {
 	for (int i=0;i<map.length;++i) {
 	for (int j=0;j<map[0].length;++j) {
 	switch (map[i][j]) {
+	
 	case WALL:
 	g.drawImage(im2,USIZE*i,USIZE*j,this);
 	break;
+	
 	case BLOCK: case GBLOCK:
 	g.drawImage(im3,USIZE*i,USIZE*j,this);
 	break;
+	
 	case GOAL:
 	g.drawImage(im4,USIZE*i,USIZE*j,this);
 	break;

@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ~/.sikla/
+java sikla.SiklaMain
+exit 0
