@@ -17,6 +17,7 @@ If it just opens in the text editor, you should right-click it, go to properties
 If you like terminal more, just cd to the Linux_Install folder and type
 make
 
+
 3. A file named Sikla will appear to your home folder. Double-click it to play!
 You can move this file wherever you like.
 
