@@ -15,11 +15,19 @@ If it just opens in the text editor, you should right-click it, go to properties
 "Allow to excecute as a program" and mark it.
 
 If you like terminal more, just cd to the Linux_Install folder and type
-make
+./install_sikla
 
 
 3. A file named Sikla will appear to your home folder. Double-click it to play!
 You can move this file wherever you like.
 4. After if you want, you can erase the zip file and the folder extracted from it.
+
+
+TO UNINSTALL ON LINUX
+1. Go to /usr/games/Sikla from nautilus or terminal.
+2. Excecute the uninstall file with a double-clisk or by typing
+./uninstall
+in terminal.
+
 
 That's all, have fun :-)
