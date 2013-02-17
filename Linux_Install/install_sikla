@@ -1,2 +1,19 @@
 #!/bin/bash
-make
+COMP=javac
+FROM=../sikla
+DEST=/usr/games/Sikla
+
+echo Sikla Puzzle game instalation.
+
+sudo mkdir -p $DEST/sikla/
+
+echo Copying files...
+sudo cp -f $FROM/*.class $DEST/sikla
+sudo cp -r $FROM/data/ $DEST/sikla
+
+cp -f Sikla $HOME
+sudo cp uninstall $DEST
+
+echo Done.
+read -n 1 -s
+exit 0

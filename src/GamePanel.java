@@ -65,7 +65,7 @@ public void paintComponent(Graphics g) {
 	if (par.cstage<SiklaMain.stages || par.pmode) {
 	g.drawString("ΣΥΓΧΑΡΗΤΗΡΙΑ!! ΛΥΣΑΤΕ ΤΟ "+par.cstage+"ο ΕΠΙΠΕΔΟ!!!!",100,250);
 	g.drawString("ΚΑΝΑΤΕ "+moves+" ΚΙΝΗΣΕΙΣ!",100,270);
-	g.drawString("Πιέστε \"ENTER\" για να συνεχίσετε...",100,290);
+	g.drawString("Πιέστε \"ENTER\" για να αποθηκεύσετε και να συνεχίσετε...",100,290);
 	}//if level
 	
 	else {
@@ -256,8 +256,8 @@ int setStage(int i, boolean prs, Object[] ob) {
 	
 	//Put the label
 	if(par.lb!=null)
-	if (!par.pmode) {par.lb.setText("Επίπεδο "+i);}
-	else {par.lb.setText("Προσωπικό επίπεδο "+i);}
+	 if (!par.pmode) {par.lb.setText("Επίπεδο "+i);}
+	 else {par.lb.setText("Προσωπικό επίπεδο "+i);}
 	
 	par.setMode(SiklaMain.PLAY);
 	status=GamePanel.PLAYS;
@@ -283,9 +283,11 @@ public void keyPressed(KeyEvent e) {
 	int k = e.getKeyCode();
 	
 	if (k==KeyEvent.VK_ENTER) {
-	if (!par.pmode && par.cstage<SiklaMain.stages) FileManager.loadStage(par,par.cstage+1,par.pmode,true);
-	else if (par.pmode && par.cstage<par.pers) FileManager.loadStage(par,par.cstage+1,par.pmode,true);
-	else FileManager.loadStage(par,1,par.pmode,true);
+		if (!par.pmode && par.cstage<SiklaMain.stages) FileManager.loadStage(par,par.cstage+1,par.pmode,true);
+		else if (par.pmode && par.cstage<par.pers) FileManager.loadStage(par,par.cstage+1,par.pmode,true);
+		else FileManager.loadStage(par,1,par.pmode,true);
+	 
+		FileManager.saveGame(par, false, true);
 	}//if enter
 	
 	}//else if win

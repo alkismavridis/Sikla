@@ -63,23 +63,29 @@ static int skipStages(DataInputStream sc, DataOutputStream wr,int st) {
 }//SKIP_STAGES
 
 
-static int saveGame(SiklaMain sm, boolean wrmap) {
+static int saveGame(SiklaMain sm, boolean wrmap, boolean auto) {
 	//data must contains:
 	// { profile_name, level_to_write, byte[][] map, int[2] pos, int[2] avalable_stages_and_moves }
 	try {
 	
 	DataOutputStream  wr = new DataOutputStream(
-	new FileOutputStream(new File("./sikla/profiles/"+sm.profile+"/data"),false));
+	new FileOutputStream(new File(SiklaMain.fprof, sm.profile+"/data"),false));
 	
 	byte[] pos = new byte[] {sm.gp.posx, sm.gp.posy};
 	
 	wr.writeInt(sm.avstages); // write the basic info
 	wr.writeInt(sm.cstage);
-	wr.writeInt(sm.gp.moves);	
-	if (wrmap) writeMap(wr, sm.gp.map, pos, true);	//write the map, without the borders!
+		
+	if (wrmap) { //write the map, without the borders!
+	wr.writeInt(sm.gp.moves);
+	writeMap(wr, sm.gp.map, pos, true);
+	}//if
 	
 	wr.close();
+	
+	if (!auto)
 	JOptionPane.showMessageDialog(null,"Παιχνίδι αποθηκεύθηκε!","Αποθήκευση",JOptionPane.PLAIN_MESSAGE);
+	
 	return 0;
 	}//try
 	catch (Exception ex) {ex.printStackTrace(); return 1;}
@@ -383,11 +389,11 @@ static int loadGame(SiklaMain sm, String prof) {
 	JOptionPane.showMessageDialog(null,"Δεν έχετε διαλέξει προφίλ.","Σφάλμα",JOptionPane.WARNING_MESSAGE);
 	return 1;
 	}//if
-	tf = new File("sikla/profiles/"+prof+"/data");
+	tf = new File(SiklaMain.fprof, prof+"/data");
 	l = tf.length();
 	DataInputStream sc = new DataInputStream (new FileInputStream (tf) );
 	sm.profile=prof;
-	SiklaMain.pf = new File("sikla/profiles/"+prof+"/stages");
+	SiklaMain.pf = new File(SiklaMain.fprof, prof+"/stages");
 	
 	
 	//2.check that data file is not empty...
@@ -403,7 +409,7 @@ static int loadGame(SiklaMain sm, String prof) {
 	
 	sm.setDefaultValues(prof,false);
 	//4. Load map if any...
-	if (l==8) {sm.gp.moves=0; return loadStage(sm, -1, false, true);}
+	if (l==8) {return loadStage(sm, sm.cstage, sm.pmode, true);}
 
 	
 	//else...

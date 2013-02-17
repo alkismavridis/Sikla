@@ -1,4 +1,4 @@
 #!/bin/bash
-cd ~/.sikla/
+cd /usr/games/Sikla
 java sikla.SiklaMain
 exit 0

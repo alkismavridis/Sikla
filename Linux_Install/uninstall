@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "This command will remove Sikla from your System. Press Ctrl+C for concel."
+
+cd /usr/games
+sudo rm -r Sikla
+rm -r $HOME/.sikla/
+rm $HOME/Sikla
+exit 0

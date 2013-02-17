@@ -10,8 +10,8 @@ public class SiklaMain extends JFrame implements ActionListener,MouseListener {
 
 static final int WAIT=0, PLAY=1, CREATE=2, PROFILE=3;
 
-static final File fmain = new File("sikla/stages");
-static File pf, loadf, crloadf;
+static final File fmain = new File("sikla/data/stages");
+static File pf, loadf, crloadf, fprof=null;
 static int stages = FileManager.numOfStages(fmain); //WHEN GAME IS COMPLETE, HERE WE WILL JUST PUT THE NUMBER OF STAGES
 static GridBagConstraints c = new GridBagConstraints();
 static String[] profiles;
@@ -58,6 +58,8 @@ JMenuBar crmb;
 JMenu crm;
 JMenuItem[] crmi;
 
+
+
 SiklaMain() {
 	
 	int i;
@@ -69,7 +71,7 @@ SiklaMain() {
 	
 	constructMenu();
 	
-	profiles = new File("./sikla/profiles/").list();
+	profiles = fprof.list();
 	setMode(PROFILE);
 	
 	if (mode==PLAY) {gp.requestFocusInWindow();}
@@ -318,7 +320,7 @@ private boolean createProfile() {
 	if (str==null) {return false;}
 	else if (str.equals("")) {str = JOptionPane.showInputDialog(null,"Παρακαλώ δώστε ένα όνομα!","Κενό όνομα",JOptionPane.PLAIN_MESSAGE);}
 	else {
-	parnt = new File("./sikla/profiles/"+str);
+	parnt = new File(fprof,str);
 	if (parnt.exists()) {
 	str = JOptionPane.showInputDialog(null,"Το όνομα που δώσατε υπάρχει ήδη.\nΠαρακαλώ δώστε άλλο όνομα.",
 	"Όνομα υπάρχει",JOptionPane.PLAIN_MESSAGE);
@@ -343,7 +345,7 @@ private boolean createProfile() {
 	}//if
 	
 	setDefaultValues(str, true);
-	profiles = (new File("./sikla/profiles/")).list();
+	profiles = fprof.list();
 	if (prl!=null) prl.setListData(profiles);
 	return true;
 	}//try
@@ -363,7 +365,7 @@ void deleteProfile() {
 	for (int i=1; i<6; i++) mi[i].setEnabled(false);
 	}//if
 	
-	File prnt = new File("./sikla/profiles/"+str);
+	File prnt = new File(fprof,str);
 	for (File ins : prnt.listFiles()) ins.delete();
 	prnt.delete();
 	
@@ -380,7 +382,7 @@ void setDefaultValues(String prof, boolean all) {
 	if (prof==null) {prof=""; setTitle("Sikla Puzzle Game"); pers=0;}
 	else {
 	setTitle("Sikla Puzzle Game: "+prof);
-	SiklaMain.pf = new File("sikla/profiles/"+prof+"/stages");
+	SiklaMain.pf = new File(fprof, prof+"/stages");
 	pers = FileManager.numOfStages(pf);
 	}//else
 	
@@ -417,8 +419,7 @@ public void actionPerformed(ActionEvent e) {
 	}//if mi[1]
 	
 	else if (s==mi[2]) { //Save
-	int lv = (pmode)? -cstage : cstage;
-	FileManager.saveGame(this,true);
+	FileManager.saveGame(this,true, false);
 	}//if mi[2]
 	
 	else if (s==mi[3]) { //choose level
@@ -624,9 +625,15 @@ public void mousePressed(MouseEvent me) {}
 
 public static void main(String args[]) {
 	try {
-	new SiklaMain();
 	
+	//Read where profiles are located
+	if (args==null || args.length==0) fprof = new File(System.getProperty("user.home"),"/.sikla/");
+	else {fprof = new File(args[0]);}
+	
+	if (!fprof.exists()) {fprof.getParentFile().mkdir(); fprof.mkdir();}
+	
+	new SiklaMain();
 	}//try
-	catch(Exception ex) {System.out.print(ex.toString()+"\n");}
+	catch(Exception ex) {ex.printStackTrace();}
 }//main
 }//class
