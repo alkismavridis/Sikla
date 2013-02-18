@@ -287,7 +287,7 @@ public void keyPressed(KeyEvent e) {
 		else if (par.pmode && par.cstage<par.pers) FileManager.loadStage(par,par.cstage+1,par.pmode,true);
 		else FileManager.loadStage(par,1,par.pmode,true);
 	 
-		FileManager.saveGame(par, false, true);
+		if (!par.pmode) FileManager.saveGame(par, false, true);
 	}//if enter
 	
 	}//else if win

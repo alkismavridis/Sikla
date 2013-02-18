@@ -14,6 +14,12 @@ sudo cp -r $FROM/data/ $DEST/sikla
 cp -f Sikla $HOME
 sudo cp uninstall $DEST
 
+
+echo Setting mode bits...
+sudo chmod -R 644 $DEST/sikla/*.class
+sudo chmod -R 644 $DEST/sikla/data/*
+sudo chmod -R 755 $DEST/uninstall
+
 echo Done.
 read -n 1 -s
 exit 0
