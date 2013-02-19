@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "This command will remove Sikla from your System. Press Ctrl+C for concel."
+echo "This command will remove Sikla from your System. Press Ctrl+C for cancel."
 
 cd /usr/games
 sudo rm -r Sikla

@@ -5,20 +5,22 @@ DEST=/usr/games/Sikla
 
 echo Sikla Puzzle game instalation.
 
+sudo echo Creating folders...
 sudo mkdir -p $DEST/sikla/
+sudo mkdir $DEST/sikla/data/
 
 echo Copying files...
 sudo cp -f $FROM/*.class $DEST/sikla
-sudo cp -r $FROM/data/ $DEST/sikla
+sudo cp -r $FROM/data/* $DEST/sikla/data
 
 cp -f Sikla $HOME
 sudo cp uninstall $DEST
 
 
 echo Setting mode bits...
-sudo chmod -R 644 $DEST/sikla/*.class
-sudo chmod -R 644 $DEST/sikla/data/*
-sudo chmod -R 755 $DEST/uninstall
+sudo chmod 644 $DEST/sikla/*.class
+sudo chmod 644 $DEST/sikla/data/*
+sudo chmod 755 $DEST/uninstall
 
 echo Done.
 read -n 1 -s
