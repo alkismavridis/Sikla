@@ -1,5 +1,6 @@
 Sikla
 =====
+NOTE: THIS PROJECT IS VERY OLD, I WAS STILL A BEGINER WHEN I MADE IT. :)
 
 A simple Sokoban-like puzzle game, written in Java. Language: Greek.
 By: Alkis Mavridis
